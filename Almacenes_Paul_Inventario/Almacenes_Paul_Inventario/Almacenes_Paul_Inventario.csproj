@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\Cliente.cs" />
+    <Compile Include="Clases\Conexion.cs" />
     <Compile Include="ClienteCRUD.cs">
       <SubType>Form</SubType>
     </Compile>
