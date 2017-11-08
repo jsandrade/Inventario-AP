@@ -52,13 +52,13 @@
     <Compile Include="ClienteCRUD.Designer.cs">
       <DependentUpon>ClienteCRUD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Clases\Producto.cs" />
+    <Compile Include="VentasCRUD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="VentasCRUD.Designer.cs">
+      <DependentUpon>VentasCRUD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Clases\Producto.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +81,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ClienteCRUD.resx">
       <DependentUpon>ClienteCRUD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentasCRUD.resx">
+      <DependentUpon>VentasCRUD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

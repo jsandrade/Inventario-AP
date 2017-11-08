@@ -16,5 +16,10 @@ namespace Almacenes_Paul_Inventario
         {
             InitializeComponent();
         }
+
+        private void ClienteCRUD_Load(object sender, EventArgs e)
+        {
+            CenterToParent();
+        }
     }
 }

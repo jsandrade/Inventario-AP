@@ -17,16 +17,28 @@ namespace Almacenes_Paul_Inventario
             InitializeComponent();
         }
 
-        private void registrarProductoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Menu_Load(object sender, EventArgs e)
+        {
+            CenterToScreen();
+        }
+
+        private void productoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ProductoCRUD producto = new ProductoCRUD();
             producto.Show();
             CenterToParent();
         }
 
-        private void Menu_Load(object sender, EventArgs e)
+        private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CenterToScreen();
+            ClienteCRUD cliente = new ClienteCRUD();
+            cliente.Show();
+
+        }
+
+        private void ventaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VentasCRUD ventas = new VentasCRUD();
         }
     }
 }
