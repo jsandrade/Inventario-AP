@@ -17,7 +17,7 @@ namespace Almacenes_Paul_Inventario
         private String cliDireccion;
         private String cliCorreo;
 
-        Cliente() {
+        public Cliente() {
         }
         
         #region Getters & Setters
