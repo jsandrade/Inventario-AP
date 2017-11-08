@@ -26,7 +26,7 @@ namespace Almacenes_Paul_Inventario
         {
             int aux = 0;
             String cod = "3";
-            aux = Producto.GuardarProducto(cod,txtNombre.Text, txtSerie.Text, txtModelo.Text, txtMarca.Text, txtPrecio.Text, txtDescripcion.Text, txtStock.Text);
+            aux = Producto.GuardarProducto(txtNombre.Text, txtSerie.Text, txtModelo.Text, txtMarca.Text, txtPrecio.Text, txtDescripcion.Text, txtStock.Text);
             if (aux == 1)
             {
                 MessageBox.Show("Los datos se ingresaron Correctamente");
