@@ -44,14 +44,14 @@ namespace Almacenes_Paul_Inventario
         
 
         
-        public static int GuardarProducto(string proCodigo, string proNombre, string proSerie, string proModelo, string proMarca, string proPrecio, string proDescripcion, string proStock)
+        public static int GuardarProducto( string proNombre, string proSerie, string proModelo, string proMarca, string proPrecio, string proDescripcion, string proStock)
         {
             int band = 0;
             try
             {
                 comando.Parameters.Clear();
-                comando.CommandText = "INSERT INTO pepro_produc(PEPRO_CODIGO, PEPRO_NOMBRE, PEPRO_SERIE, PEPRO_MODELO, PEPRO_MARCA, PEPRO_PRECIO, PEPRO_DESCRIPCION, PEPRO_STOCK) values (@proCodigo,@proNombre, @proSerie, @promodelo, @proMarca, @proPrecio, @proDescripcion,@proStock)";
-                comando.Parameters.AddWithValue("@proCodigo", proCodigo);
+                comando.CommandText = "INSERT INTO pepro_produc(PEPRO_CODIGO, PEPRO_NOMBRE, PEPRO_SERIE, PEPRO_MODELO, PEPRO_MARCA, PEPRO_PRECIO, PEPRO_DESCRIPCION, PEPRO_STOCK) values (NULL,@proNombre, @proSerie, @promodelo, @proMarca, @proPrecio, @proDescripcion,@proStock)";
+                //comando.Parameters.AddWithValue("@proCodigo", proCodigo);
                 comando.Parameters.AddWithValue("@proNombre", proNombre);
                 comando.Parameters.AddWithValue("@proSerie", proSerie);
                 comando.Parameters.AddWithValue("@proModelo", proModelo);
