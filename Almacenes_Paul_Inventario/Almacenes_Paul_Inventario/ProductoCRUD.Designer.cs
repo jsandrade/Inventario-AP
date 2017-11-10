@@ -68,6 +68,7 @@
             this.btnBuscar.TabIndex = 1;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnModifcar
             // 
@@ -100,14 +101,14 @@
             // 
             this.txtNombre.Location = new System.Drawing.Point(152, 31);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(137, 20);
+            this.txtNombre.Size = new System.Drawing.Size(164, 20);
             this.txtNombre.TabIndex = 5;
             // 
             // txtSerie
             // 
             this.txtSerie.Location = new System.Drawing.Point(152, 76);
             this.txtSerie.Name = "txtSerie";
-            this.txtSerie.Size = new System.Drawing.Size(137, 20);
+            this.txtSerie.Size = new System.Drawing.Size(164, 20);
             this.txtSerie.TabIndex = 7;
             // 
             // label2
@@ -123,7 +124,7 @@
             // 
             this.txtModelo.Location = new System.Drawing.Point(152, 120);
             this.txtModelo.Name = "txtModelo";
-            this.txtModelo.Size = new System.Drawing.Size(137, 20);
+            this.txtModelo.Size = new System.Drawing.Size(164, 20);
             this.txtModelo.TabIndex = 9;
             // 
             // label3
@@ -138,8 +139,9 @@
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(152, 246);
+            this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(137, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(164, 71);
             this.txtDescripcion.TabIndex = 15;
             // 
             // label4
@@ -155,7 +157,7 @@
             // 
             this.txtPrecio.Location = new System.Drawing.Point(152, 202);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(137, 20);
+            this.txtPrecio.Size = new System.Drawing.Size(164, 20);
             this.txtPrecio.TabIndex = 13;
             // 
             // label5
@@ -171,7 +173,7 @@
             // 
             this.txtMarca.Location = new System.Drawing.Point(152, 157);
             this.txtMarca.Name = "txtMarca";
-            this.txtMarca.Size = new System.Drawing.Size(137, 20);
+            this.txtMarca.Size = new System.Drawing.Size(164, 20);
             this.txtMarca.TabIndex = 11;
             // 
             // label6
@@ -201,22 +203,22 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Location = new System.Drawing.Point(22, 24);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(346, 330);
+            this.groupBox1.Size = new System.Drawing.Size(376, 371);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Productos";
             // 
             // txtStock
             // 
-            this.txtStock.Location = new System.Drawing.Point(152, 290);
+            this.txtStock.Location = new System.Drawing.Point(152, 334);
             this.txtStock.Name = "txtStock";
-            this.txtStock.Size = new System.Drawing.Size(137, 20);
+            this.txtStock.Size = new System.Drawing.Size(164, 20);
             this.txtStock.TabIndex = 17;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(33, 290);
+            this.label7.Location = new System.Drawing.Point(33, 334);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 16;
@@ -226,7 +228,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(618, 366);
+            this.ClientSize = new System.Drawing.Size(631, 407);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModifcar);
