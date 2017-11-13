@@ -106,15 +106,15 @@ namespace Almacenes_Paul_Inventario.Clases
 
         }
 
-        public int validarcliente (int cedula)
-        {
-            return Cliente;
-        }
+        //public int validarcliente (int cedula)
+        //{
+        //    //return Cliente;
+        //}
 
-        public int registrarcompra(int cedula)
-        {
-            return Cliente;
-        }
+        //public int registrarcompra(int cedula)
+        //{
+        //    //return Cliente;
+        //}
 
     }
 }

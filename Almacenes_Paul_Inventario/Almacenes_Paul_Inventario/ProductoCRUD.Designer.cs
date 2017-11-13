@@ -78,6 +78,7 @@
             this.btnModifcar.TabIndex = 2;
             this.btnModifcar.Text = "MODIFICAR";
             this.btnModifcar.UseVisualStyleBackColor = true;
+            this.btnModifcar.Click += new System.EventHandler(this.btnModifcar_Click);
             // 
             // btnEliminar
             // 
@@ -87,6 +88,7 @@
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "ELIMINAR";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // label1
             // 

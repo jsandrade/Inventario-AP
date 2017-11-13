@@ -42,16 +42,26 @@ namespace Almacenes_Paul_Inventario
             String nombre;
             nombre = txtNombre.Text;
             opcion(1);
-            aux = Producto.BuscarProducto(nombre,txtSerie,txtModelo,txtMarca,txtPrecio,txtDescripcion,txtStock);
-            if (aux == 1)
+            if (txtNombre.Text != "")
             {
-                MessageBox.Show("Producto Encontrado");
+                aux = Producto.BuscarProducto(nombre, txtSerie, txtModelo, txtMarca, txtPrecio, txtDescripcion, txtStock);
+                if (aux == 1)
+                {
+                    MessageBox.Show("Producto Encontrado");
+                    opcion(3);
+                }
+                else
+                {
+                    MessageBox.Show("No se encontre el producto");
+                    txtNombre.Text = "";
+                }
             }
             else
             {
-                MessageBox.Show("No se encontre el producto");
-                txtNombre.Text = "";
+                MessageBox.Show("INGRESE DATOS EN EL CAMPO NOMBRE","Error");
+                txtNombre.Focus();
             }
+            
 
         }
 
@@ -59,6 +69,7 @@ namespace Almacenes_Paul_Inventario
         {
             if (a==1)
             {
+                txtSerie.Enabled = false;
                 txtMarca.Enabled = false;
                 txtModelo.Enabled = false;
                 txtPrecio.Enabled = false;
@@ -75,6 +86,55 @@ namespace Almacenes_Paul_Inventario
                 txtDescripcion.Text = "";
                 txtNombre.Text = "";
             }
+            if (a == 3)
+            {
+                txtSerie.Enabled = true;
+                txtMarca.Enabled = true;
+                txtModelo.Enabled = true;
+                txtPrecio.Enabled = true;
+                txtStock.Enabled = true;
+                txtDescripcion.Enabled = true;
+            }
+        }
+
+        private void btnModifcar_Click(object sender, EventArgs e)
+        {
+            int aux = 0;
+            
+
+            aux = Producto.ModificarProducto(txtNombre.Text,txtSerie.Text,txtModelo.Text,txtMarca.Text,txtPrecio.Text,txtDescripcion.Text,txtStock.Text);
+            if (aux == 1)
+            {
+                MessageBox.Show("LOS DATOS SE HAN ACTUALIZADO CORRECTAMENTE.", "Mensaje de información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                opcion(2);
+            }
+            else
+            {
+                MessageBox.Show("LOS DATOS NO SE MODIFICARON","ERROR");
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            int aux=0;
+            String nombre;
+            String serie;
+            nombre = txtNombre.Text;
+            serie = txtSerie.Text;
+            if (txtNombre.Text != "" && txtSerie.Text != "")
+            {
+                aux = Producto.EliminarProducto(nombre,serie);
+                if (aux == 1)
+                {
+                    MessageBox.Show("EL PRODUCTO SE ELIMINO CORRECTAMENTE","CONFIRMACION");
+                    opcion(2);
+                }
+                else
+                {
+                    MessageBox.Show("EL PRODUCTO NO SE ELIMINO", "ERROR");
+                }
+            }
+
         }
     }
 }

@@ -30,13 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // CRUDVentas
+            // VentasCRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(385, 308);
-            this.Name = "CRUDVentas";
+            this.Name = "VentasCRUD";
             this.Text = "CRUDVentas";
+            this.Load += new System.EventHandler(this.VentasCRUD_Load);
             this.ResumeLayout(false);
 
         }
