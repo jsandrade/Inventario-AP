@@ -118,17 +118,17 @@ namespace Almacenes_Paul_Inventario
             {
                 formato = "SELECT PECLI_APELLIDOPATERNO, PECLI_APELLIDOMATERNO," +
                     " PECLI_NOMBRES, PECLI_FIJO, PECLI_CELULAR, PECLI_DIRECCION,PECLI_CORREO  " +
-                    "FROM pecli_cliente WHERE  PECLI_CEDULA like '" + cliCedula + "'";
+                    "FROM pecli_cliente WHERE  PECLI_CEDULA like '" + dato + "'";
                 comando.Connection = Clases.Conexion.getConnection();
                 try
                 {
                     MySqlCommand cmd = new MySqlCommand(String.Format(formato), comando.Connection);
                     //aux = Convert.ToString(cmd.ExecuteScalar());
                     MySqlDataReader reader = cmd.ExecuteReader();
-                    
-                    if (reader.HasRows)
+
+                    while (reader.Read())
                     {
-                        MessageBox.Show("", "adasjdak");
+                        cliCedula = dato;
                         cliApellidoPaterno = reader.GetString(0);
                         cliApellidoMaterno = reader.GetString(1);
                         cliNombres = reader.GetString(2);
@@ -138,15 +138,11 @@ namespace Almacenes_Paul_Inventario
                         cliCorreo = reader.GetString(6);
                         band = 1;
                     }
-                    else
-                    {
-                        band = 0;
-                    }
-                    
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
+                    band = 0;
                 }
             }
             else
@@ -185,8 +181,8 @@ namespace Almacenes_Paul_Inventario
                         }
                         if (i>1)
                         {
-                            MessageBox.Show("Aviso", "Existen mas de 1 registro de sus clientes que tienen " +
-                                "el mismo apellido");
+                            MessageBox.Show("Existen mas de 1 registro de sus clientes que tienen " +
+                                "el mismo apellido","Aviso");
                         }
 
                     }
