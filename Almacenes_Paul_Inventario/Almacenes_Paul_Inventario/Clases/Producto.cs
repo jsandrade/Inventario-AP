@@ -71,15 +71,57 @@ namespace Almacenes_Paul_Inventario
             return band;
         }
 
-        public static int EliminarProducto(string proCodigo)
+        public static int BuscarProducto(string proNombre, TextBox serie, TextBox modelo,TextBox marca, TextBox precio, TextBox descri, TextBox stock)
         {
-            int retorno = 0;
+            int band = 0;
+
+            comando.Connection = Clases.Conexion.getConnection();
             try
             {
-                //comando.Connection = Conexion.getConnection();
-                //MySqlCommand _comando = new MySqlCommand(string.Format("DELETE FROM producto WHERE pro_codigo_cliente='" + proCodigo + "'"), comando.Connection);
-                //retorno = _comando.ExecuteNonQuery();
-                //comando.Connection.Close();
+                MySqlCommand cmd = new MySqlCommand(String.Format("SELECT PEPRO_SERIE ,PEPRO_MODELO,PEPRO_MARCA,PEPRO_PRECIO,PEPRO_DESCRIPCION ,PEPRO_STOCK FROM pepro_produc WHERE  PEPRO_NOMBRE= '" + proNombre + "'"), comando.Connection);
+                //aux = Convert.ToString(cmd.ExecuteScalar());
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            return band;
+        }
+        public static String Codigo(string proNombre, string proSerie)
+        {
+            String retorno="";
+
+            try
+            {
+                comando.Connection = Clases.Conexion.getConnection();
+                MySqlCommand _comando = new MySqlCommand(string.Format("SELECT PEPRO_CODIGO FROM pepro_produc WHERE PEPRO_NOMBRE= '" + proNombre + "' and PEPRO_SERIE= '" + proSerie + "';"), comando.Connection);
+                MySqlDataReader reader = _comando.ExecuteReader();
+                while (reader.Read())
+                {
+                    retorno = reader.GetString(0);
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+            return retorno;
+        }
+        public static int EliminarProducto(String proNombre, String proSerie)
+        {
+            int retorno = 0;
+            String proCodigo = Codigo(proNombre,proSerie);
+            try
+            {
+                comando.Connection = Clases.Conexion.getConnection();
+                MySqlCommand _comando = new MySqlCommand(string.Format("DELETE FROM pepro_produc WHERE pepro_codigo='" + proCodigo + "'"), comando.Connection);
+                retorno = _comando.ExecuteNonQuery();
+                comando.Connection.Close();
             }
             catch (Exception ex)
             {
@@ -88,17 +130,19 @@ namespace Almacenes_Paul_Inventario
             return retorno;
         }
         //modificar producto
-        public static int ModificarProducto(string proCodigo, string proSerie, string proModelo, string proMarca, string proPrecio, string proDescripcion)
+        public static int ModificarProducto( string proSerie, string proModelo, string proMarca, string proPrecio, string proDescripcion,String proStock)
         {
             Producto pProducto = new Producto();
 
             int aux = 0;
             float a = 0;
+            int stk = 0;
             //pProducto = producto;
             a = float.Parse(proPrecio);
+            stk = int.Parse(proStock);
             try
             {
-                if (proPrecio != pProducto.ProPrecio || proCodigo != pProducto.proCodigo || proSerie != pProducto.proSerie || proModelo != pProducto.proModelo || proMarca != pProducto.ProMarca || proDescripcion != pProducto.ProDescripcion)
+                if (proPrecio != pProducto.ProPrecio  || proSerie != pProducto.proSerie || proModelo != pProducto.proModelo || proMarca != pProducto.ProMarca || proDescripcion != pProducto.ProDescripcion)
                 {
                     //comando.Connection = Conexion.getConnection();
                     //MySqlCommand _comando = new MySqlCommand(string.Format("Update producto set pro_serie='" + proSerie + "', pro_modelo='" + proModelo + "', pro_marca='" + proMarca + "', pro_precio='" + a + "', pro_descripcion='" + proDescripcion + "' where pro_codigo_cliente='" + proCodigo + "'"), comando.Connection);
