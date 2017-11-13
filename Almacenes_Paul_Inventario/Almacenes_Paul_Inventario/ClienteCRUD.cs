@@ -59,10 +59,11 @@ namespace Almacenes_Paul_Inventario
             //Si existen los parametros adecuados realizamos la busqueda
             if (parametros!="-1 ")
             {
+                MessageBox.Show(objCliente.CliCedula + "-", "que");
                 //Si encuentra el cliente mandar mensajes y recuperar datos
-                if(objCliente.buscarCliente(int.Parse(parametros.Split(' ')[0]), parametros.Split(' ')[1]) == 1)
+                if (objCliente.buscarCliente(int.Parse(parametros.Split(' ')[0]), parametros.Split(' ')[1]) == 1)
                 {
-                    MessageBox.Show("", "que");
+                    
                     ObtenerDatos();
                 }
             }
@@ -100,6 +101,7 @@ namespace Almacenes_Paul_Inventario
             {
                 //Recopilacion de la cédula del cliente a eliminar
                 objCliente.CliCedula = txtCedula.Text;
+                RecuperarDatos();
                 //Llamar al metodo que permite borrar al cliente
                 if (objCliente.EliminarCliente()==1)
                 {
