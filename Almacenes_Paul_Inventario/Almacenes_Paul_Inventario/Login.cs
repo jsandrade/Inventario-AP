@@ -26,11 +26,32 @@ namespace Almacenes_Paul_Inventario
 
         private void btnLoginIngresar_Click(object sender, EventArgs e)
         {
-            Menu menu = new Menu();
-            menu.Show();
-        }
 
-        private void Login_Load(object sender, EventArgs e)
+            int aux=0;
+            if (txtLoginContraseña.Text == "" || txtLoginUsuario.Text == "")
+            {
+                MessageBox.Show("LLENAR TODOS LOS CAMPOS", "Mensaje de información", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Clases.Conexion.getConnection();
+                aux = Producto.BuscarUser(txtLoginUsuario.Text, txtLoginContraseña.Text);
+                if (aux == 1)
+                {
+                    Menu menu = new Menu();
+                    menu.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("DATOS INCORRECTOS", "Mensaje de información", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtLoginUsuario.Text = "";
+                    txtLoginContraseña.Text = "";
+                }
+            }
+            }
+
+    private void Login_Load(object sender, EventArgs e)
         {
             CenterToScreen();
         }

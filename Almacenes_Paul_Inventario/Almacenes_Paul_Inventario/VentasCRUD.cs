@@ -19,7 +19,7 @@ namespace Almacenes_Paul_Inventario
 
         private void VentasCRUD_Load(object sender, EventArgs e)
         {
-
+            CenterToParent();
         }
     }
 }

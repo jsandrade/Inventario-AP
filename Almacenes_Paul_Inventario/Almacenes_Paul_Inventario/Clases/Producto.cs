@@ -176,8 +176,31 @@ namespace Almacenes_Paul_Inventario
             return aux;
         }
 
+        public static int BuscarUser(string usu, string pas)//Para el login
+        {
+            int band = 0;
+            int lista = 0;
+            comando.Connection = Clases.Conexion.getConnection();
+            try
+            {
+                comando.CommandText = "SELECT count(*) FROM pelog_login where pelog_user ='" + usu + "' and pelog_password='" + pas + "'";
+                lista = int.Parse(comando.ExecuteScalar().ToString());
+                if (lista == 1)
+                {
+                    band = 1;
+                }
+                comando.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            
+            return band;
+        }
 
-#region Get y set
+
+        #region Get y set
         //set y get
 
         public string ProCodigo

@@ -14,5 +14,6 @@ namespace Almacenes_Paul_Inventario.Clases
             conectar.Open();
             return conectar;
         }
+
     }
 }

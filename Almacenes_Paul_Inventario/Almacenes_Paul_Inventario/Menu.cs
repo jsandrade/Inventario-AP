@@ -39,6 +39,7 @@ namespace Almacenes_Paul_Inventario
         private void ventaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             VentasCRUD ventas = new VentasCRUD();
+            ventas.Show();
         }
     }
 }
