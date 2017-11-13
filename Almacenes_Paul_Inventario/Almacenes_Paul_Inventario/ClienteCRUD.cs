@@ -110,6 +110,7 @@ namespace Almacenes_Paul_Inventario
             }
             return Tipo + " " + Dato;
         }
+
         #endregion
     }
 }
