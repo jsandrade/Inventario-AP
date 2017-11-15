@@ -63,6 +63,12 @@
       <DependentUpon>ClienteCRUD.cs</DependentUpon>
     </Compile>
     <Compile Include="Clases\Producto.cs" />
+    <Compile Include="CUCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CUCliente.Designer.cs">
+      <DependentUpon>CUCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="VentasCRUD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClienteCRUD.resx">
       <DependentUpon>ClienteCRUD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CUCliente.resx">
+      <DependentUpon>CUCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VentasCRUD.resx">
       <DependentUpon>VentasCRUD.cs</DependentUpon>

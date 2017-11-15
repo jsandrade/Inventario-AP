@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -74,7 +75,6 @@ namespace Almacenes_Paul_Inventario
                     "PECLI_APELLIDOMATERNO, PECLI_NOMBRES, PECLI_FIJO, PECLI_CELULAR, PECLI_DIRECCION,PECLI_CORREO)" +
                     " values (@cliCedula, @cliApellidoPaterno, @cliApellidoMaterno, @cliNombres, @cliTelFijo," +
                     " @cliTelCelular,@cliDireccion,@cliCorreo)";
-                //comando.Parameters.AddWithValue("@proCodigo", proCodigo);
                 comando.Parameters.AddWithValue("@cliCedula", cliCedula);
                 comando.Parameters.AddWithValue("@cliApellidoPaterno", cliApellidoPaterno);
                 comando.Parameters.AddWithValue("@cliApellidoMaterno", cliApellidoMaterno);
@@ -97,106 +97,82 @@ namespace Almacenes_Paul_Inventario
         }
 
         /// <summary>
-        /// Verifica si el cliente existe dentro de la base de datos.
+        /// Verifica si el cliente existe dentro de la base de datos para realizar cualquier operacion.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna True si la cedula del cliente se encuentra registrada dentro de la abse de datos.</returns>
         public bool verificarCliente()
         {
-            return true;
+            Boolean band=false;
+            string formato = "SELECT * WHERE  PECLI_CEDULA LIKE '" + cliCedula + "'";
+            comando.Connection = Clases.Conexion.getConnection();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(String.Format(formato), comando.Connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    band = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                band = false;
+            }
+            return band;
         }
 
         /// <summary>
         /// Realiza la busqueda de clientes dentro de la base de datos.
         /// </summary>
-        /// <param name="tipo">0: Cédula ; 1: Apellido</param>
+        /// <param name="dgvTabla">DataGridView en el que se llenaran los campos.</param>
         /// <param name="dato">Envia el parametro de busqueda sea la cédula o el apellido</param>
-        public int buscarCliente(int tipo,string dato)
+        public int buscarCliente(DataGridView dgvTabla,string dato)
         {
             int band = 0;
             String formato="";
-            if (tipo==0)
-            {
-                formato = "SELECT PECLI_APELLIDOPATERNO, PECLI_APELLIDOMATERNO," +
-                    " PECLI_NOMBRES, PECLI_FIJO, PECLI_CELULAR, PECLI_DIRECCION,PECLI_CORREO  " +
-                    "FROM pecli_cliente WHERE  PECLI_CEDULA like '" + dato + "'";
+        
+                // Se crea un DataTable que almacenará los datos desde donde se cargaran los datos
+                // al DataGridView
+                DataTable dtDatos = new DataTable();
+                formato = "SELECT PECLI_CEDULA as 'Cedula',  concat(PECLI_APELLIDOPATERNO ,' ', PECLI_APELLIDOMATERNO) as 'Apellidos'," +
+                    " PECLI_NOMBRES as 'Nombres', PECLI_FIJO as 'Tel. Fijo', PECLI_CELULAR as 'Tel. Celular', PECLI_DIRECCION as 'Direccion',PECLI_CORREO  as 'Correo'" +
+                    "FROM pecli_cliente WHERE  PECLI_CEDULA like '%" + dato + "%'";
                 comando.Connection = Clases.Conexion.getConnection();
                 try
                 {
-                    MySqlCommand cmd = new MySqlCommand(String.Format(formato), comando.Connection);
-                    //aux = Convert.ToString(cmd.ExecuteScalar());
-                    MySqlDataReader reader = cmd.ExecuteReader();
+                    // Se crea un MySqlAdapter para obtener los datos de la base
+                    MySqlDataAdapter mdaDatos = new MySqlDataAdapter(String.Format(formato), comando.Connection);
 
-                    while (reader.Read())
-                    {
-                        cliCedula = dato;
-                        cliApellidoPaterno = reader.GetString(0);
-                        cliApellidoMaterno = reader.GetString(1);
-                        cliNombres = reader.GetString(2);
-                        cliTelFijo = reader.GetString(3);
-                        cliTelCelular = reader.GetString(4);
-                        cliDireccion = reader.GetString(5);
-                        cliCorreo = reader.GetString(6);
-                        band = 1;
-                    }
+                    // Con la información del adaptador se rellena el DataTable
+                    mdaDatos.Fill(dtDatos);
+
+                    // Se asigna el DataTable como origen de datos del DataGridView
+                    dgvTabla.DataSource = dtDatos;
+                    //MySqlCommand cmd = new MySqlCommand(String.Format(formato), comando.Connection);
+                    //aux = Convert.ToString(cmd.ExecuteScalar());
+                    //MySqlDataReader reader = cmd.ExecuteReader();
+
+                    //while (reader.Read())
+                    //{
+                    //    cliCedula = dato;
+                    //    cliApellidoPaterno = reader.GetString(0);
+                    //    cliApellidoMaterno = reader.GetString(1);
+                    //    cliNombres = reader.GetString(2);
+                    //    cliTelFijo = reader.GetString(3);
+                    //    cliTelCelular = reader.GetString(4);
+                    //    cliDireccion = reader.GetString(5);
+                    //    cliCorreo = reader.GetString(6);
+                    //    band = 1;
+                    //}
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                     band = 0;
                 }
-            }
-            else
-            {
-                formato = "SELECT PECLI_CEDULA, PECLI_APELLIDOMATERNO," +
-                  " PECLI_NOMBRES, PECLI_FIJO, PECLI_CELULAR, PECLI_DIRECCION,PECLI_CORREO  " +
-                  "FROM pecli_cliente WHERE  PECLI_APELLIDOPATERNO LIKE '" + cliApellidoPaterno + "'";
-                comando.Connection = Clases.Conexion.getConnection();
-                try
-                {
-                    MySqlCommand cmd = new MySqlCommand(String.Format(formato), comando.Connection);
-                    //aux = Convert.ToString(cmd.ExecuteScalar());
-                    MySqlDataReader reader = cmd.ExecuteReader();
+            
 
-                    if (reader.HasRows)
-                    {
-                        int i = 0;
-                        while (reader.Read())
-                        {
-                            if (i==0)
-                            {
-                                cliCedula = reader.GetString(0);
-                                cliApellidoMaterno = reader.GetString(1);
-                                cliNombres = reader.GetString(2);
-                                cliTelFijo = reader.GetString(3);
-                                cliTelCelular = reader.GetString(4);
-                                cliDireccion = reader.GetString(5);
-                                cliCorreo = reader.GetString(6);
-                                band = 1;
-                            }
-                            else
-                            {
-                                band = 0;
-                            }
-                            i++;
-                        }
-                        if (i>1)
-                        {
-                            MessageBox.Show("Existen mas de 1 registro de sus clientes que tienen " +
-                                "el mismo apellido","Aviso");
-                        }
-
-                    }
-                    else
-                    {
-                        band = 0;
-                    }
-                    
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-            }
 
 
             return band;
