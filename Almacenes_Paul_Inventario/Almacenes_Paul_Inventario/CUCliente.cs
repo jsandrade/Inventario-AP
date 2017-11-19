@@ -49,19 +49,32 @@ namespace Almacenes_Paul_Inventario
                     //Valido el numero de cédula
                     if (ValidarCedula())
                     {
-                        //Llamo al metodo para modificar el cliente
-                        if (objCliente.guardarCliente() == 1)
+                        //Validar Correo
+                        if (ValidarCorreo())
                         {
-                            BorrarCampos();
-                            MessageBox.Show("Datos guardados exitosamente.","Aviso");
-                            this.Close();
+                            if (ValidarTelCelular() && ValidarTelFijo())
+                            {
+                                //Llamo al metodo para modificar el cliente
+                                if (objCliente.guardarCliente() == 1)
+                                {
+                                    BorrarCampos();
+                                    MessageBox.Show("Datos guardados exitosamente.", "Aviso");
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No se ha podido guardar los datos.", "Aviso");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Los numeros de telefono deben tener 10 digitos", "Aviso");
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("No se ha podido guardar los datos.", "Aviso");
+                            MessageBox.Show("El correo electronico que desea ingresar no es valido", "Aviso");
                         }
-                        
-                        
                     }
                     else
                     {
@@ -83,16 +96,33 @@ namespace Almacenes_Paul_Inventario
                     {
                         //Recopilacion de los datos a modificar
                         RecuperarDatos();
-                        //Llamo al metodo para modificar el cliente
-                        if (objCliente.ModificarCliente() == 1)
+                        //Valido el correo
+                        if (ValidarCorreo())
                         {
-                            MessageBox.Show("Los datos han sido modificados correctamente ", "Aviso");
-                            BorrarCampos();
+                            if (ValidarTelCelular()&&ValidarTelFijo())
+                            {
+                                //Llamo al metodo para modificar el cliente
+                                if (objCliente.ModificarCliente() == 1)
+                                {
+                                    MessageBox.Show("Los datos han sido modificados correctamente ", "Aviso");
+                                    BorrarCampos();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No se ha podido modificar los datos", "Aviso");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Los numeros de telefono deben tener 10 digitos", "Aviso");
+                            }
+                           
                         }
                         else
                         {
-                            MessageBox.Show("No se ha podido modificar los datos", "Aviso");
+                            MessageBox.Show("El correo electronico que desea ingresar no es valido", "Aviso");
                         }
+
                     }
                     else
                     {
@@ -261,5 +291,126 @@ namespace Almacenes_Paul_Inventario
         }
         #endregion
 
+        #region VALIDACIONES
+        private void txtTelFijo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+        private void txtApellidos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+        private void numerosYletras(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsNumber(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+        private void NumerosLetrasyArroba(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('@') && txtCorreo.Text.Contains('@'))
+            {
+                e.Handled = true;
+            }
+            else if (Char.IsLetterOrDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar.Equals('@')|| e.KeyChar.Equals('_')||
+                e.KeyChar.Equals('.')|| e.KeyChar.Equals('-'))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+            
+        }
+
+
+        private bool ValidarCorreo()
+        {
+            string correo = txtCorreo.Text;
+            //Debe contener al menos un simbolo de @
+            if (correo.Contains('@'))
+            {
+                String[] Separacion = correo.Split('@');
+                if (Separacion.Length==2)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool ValidarTelCelular()
+        {
+            if (txtTelCedular.Text.Length>9)
+            {
+                return true;
+            }
+            return false;
+        }
+        private bool ValidarTelFijo()
+        {
+            if (txtTelFijo.Text.Length > 9)
+            {
+                return true;
+            }
+            return false;
+        }
+        #endregion
     }
 }

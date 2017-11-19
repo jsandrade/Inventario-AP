@@ -86,6 +86,7 @@
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(227, 20);
             this.txtCorreo.TabIndex = 12;
+            this.txtCorreo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumerosLetrasyArroba);
             // 
             // label5
             // 
@@ -111,13 +112,16 @@
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(227, 20);
             this.txtDireccion.TabIndex = 9;
+            this.txtDireccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numerosYletras);
             // 
             // txtTelFijo
             // 
             this.txtTelFijo.Location = new System.Drawing.Point(146, 151);
+            this.txtTelFijo.MaxLength = 10;
             this.txtTelFijo.Name = "txtTelFijo";
             this.txtTelFijo.Size = new System.Drawing.Size(227, 20);
             this.txtTelFijo.TabIndex = 8;
+            this.txtTelFijo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelFijo_KeyPress);
             // 
             // label3
             // 
@@ -140,9 +144,11 @@
             // txtTelCedular
             // 
             this.txtTelCedular.Location = new System.Drawing.Point(146, 122);
+            this.txtTelCedular.MaxLength = 10;
             this.txtTelCedular.Name = "txtTelCedular";
             this.txtTelCedular.Size = new System.Drawing.Size(227, 20);
             this.txtTelCedular.TabIndex = 5;
+            this.txtTelCedular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelFijo_KeyPress);
             // 
             // txtNombres
             // 
@@ -150,6 +156,7 @@
             this.txtNombres.Name = "txtNombres";
             this.txtNombres.Size = new System.Drawing.Size(227, 20);
             this.txtNombres.TabIndex = 4;
+            this.txtNombres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidos_KeyPress);
             // 
             // label2
             // 
@@ -175,6 +182,7 @@
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(227, 20);
             this.txtApellidos.TabIndex = 1;
+            this.txtApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidos_KeyPress);
             // 
             // txtCedula
             // 
@@ -182,6 +190,7 @@
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(227, 20);
             this.txtCedula.TabIndex = 0;
+            this.txtCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelFijo_KeyPress);
             // 
             // btnGuardar
             // 
@@ -203,7 +212,7 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // Form1
+            // CUCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -211,7 +220,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Form1";
+            this.Name = "CUCliente";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
