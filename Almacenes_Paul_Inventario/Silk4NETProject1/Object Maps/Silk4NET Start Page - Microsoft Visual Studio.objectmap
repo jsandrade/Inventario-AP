@@ -1,0 +1,5 @@
+<ObjectMap version="1">
+  <ObjectMapEntry id="Silk4NET Start Page - Microsoft Visual Studio" locator="/WPFWindow[@caption=&apos;Silk4NET Start Page - Microsoft Visual Studio &apos;]">
+    <ObjectMapEntry id="HideButton" locator="//WPFButton[@automationId=&apos;HideButton&apos;][3]"/>
+  </ObjectMapEntry>
+</ObjectMap>

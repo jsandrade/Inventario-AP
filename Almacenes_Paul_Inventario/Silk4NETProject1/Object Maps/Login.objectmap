@@ -1,0 +1,7 @@
+<ObjectMap version="1">
+  <ObjectMapEntry id="Login" locator="/FormsWindow[@caption=&apos;Login&apos;]">
+    <ObjectMapEntry id="btnLoginIngresar" locator="//PushButton[@automationId=&apos;btnLoginIngresar&apos;]"/>
+    <ObjectMapEntry id="txtLoginContraseña" locator="//TextField[@automationId=&apos;txtLoginContraseña&apos;]"/>
+    <ObjectMapEntry id="txtLoginUsuario" locator="//TextField[@automationId=&apos;txtLoginUsuario&apos;]"/>
+  </ObjectMapEntry>
+</ObjectMap>

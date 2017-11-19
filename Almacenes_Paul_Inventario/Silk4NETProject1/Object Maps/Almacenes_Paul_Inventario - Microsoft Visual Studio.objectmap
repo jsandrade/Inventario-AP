@@ -1,0 +1,5 @@
+<ObjectMap version="1">
+  <ObjectMapEntry id="Almacenes_Paul_Inventario - Microsoft Visual Studio" locator="/WPFWindow[@caption=&apos;Almacenes_Paul_Inventario - Microsoft Visual Studio &apos;]">
+    <ObjectMapEntry id="Iniciar" locator="//WPFMenuItem[@caption=&apos;Iniciar&apos;]"/>
+  </ObjectMapEntry>
+</ObjectMap>

@@ -12,9 +12,11 @@ namespace Almacenes_Paul_Inventario
 {
     public partial class ProductoCRUD : Form
     {
+        Producto pProducto ;
         public ProductoCRUD()
         {
             InitializeComponent();
+            pProducto = new Producto();
         }
 
         private void ProductoCRUD_Load(object sender, EventArgs e)
@@ -41,6 +43,7 @@ namespace Almacenes_Paul_Inventario
             int aux = 0;
             String nombre;
             nombre = txtNombre.Text;
+            
             opcion(1);
             if (txtNombre.Text != "")
             {
@@ -99,10 +102,9 @@ namespace Almacenes_Paul_Inventario
 
         private void btnModifcar_Click(object sender, EventArgs e)
         {
+           
             int aux = 0;
-            
-
-            aux = Producto.ModificarProducto(txtNombre.Text,txtSerie.Text,txtModelo.Text,txtMarca.Text,txtPrecio.Text,txtDescripcion.Text,txtStock.Text);
+            aux = Producto.ModificarProducto(txtNombre.Text, txtSerie.Text, txtModelo.Text, txtMarca.Text, txtPrecio.Text, txtDescripcion.Text, txtStock.Text,pProducto);
             if (aux == 1)
             {
                 MessageBox.Show("LOS DATOS SE HAN ACTUALIZADO CORRECTAMENTE.", "Mensaje de información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -110,7 +112,7 @@ namespace Almacenes_Paul_Inventario
             }
             else
             {
-                MessageBox.Show("LOS DATOS NO SE MODIFICARON","ERROR");
+                MessageBox.Show("LOS DATOS NO SE MODIFICARON", "ERROR");
             }
         }
 

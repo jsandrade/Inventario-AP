@@ -47,15 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuscarProductoVenta.cs">
+    <Compile Include="BuscarProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BuscarProductoVenta.Designer.cs">
-      <DependentUpon>BuscarProductoVenta.cs</DependentUpon>
+    <Compile Include="BuscarProducto.Designer.cs">
+      <DependentUpon>BuscarProducto.cs</DependentUpon>
     </Compile>
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Clases\Compra.cs" />
+    <Compile Include="Clases\Validacion.cs" />
     <Compile Include="ClienteCRUD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,8 +96,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="BuscarProductoVenta.resx">
-      <DependentUpon>BuscarProductoVenta.cs</DependentUpon>
+    <EmbeddedResource Include="BuscarProducto.resx">
+      <DependentUpon>BuscarProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClienteCRUD.resx">
       <DependentUpon>ClienteCRUD.cs</DependentUpon>

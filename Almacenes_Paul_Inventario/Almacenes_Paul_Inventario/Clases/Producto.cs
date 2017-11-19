@@ -74,14 +74,12 @@ namespace Almacenes_Paul_Inventario
         public static int BuscarProducto(string proNombre, TextBox serie, TextBox modelo,TextBox marca, TextBox precio, TextBox descri, TextBox stock)
         {
             int band = 0;
-
             comando.Connection = Clases.Conexion.getConnection();
             try
             {
                 MySqlCommand cmd = new MySqlCommand(String.Format("SELECT PEPRO_SERIE ,PEPRO_MODELO,PEPRO_MARCA,PEPRO_PRECIO,PEPRO_DESCRIPCION ,PEPRO_STOCK FROM pepro_produc WHERE  PEPRO_NOMBRE= '" + proNombre + "'"), comando.Connection);
                 //aux = Convert.ToString(cmd.ExecuteScalar());
                 MySqlDataReader reader = cmd.ExecuteReader();
-                MessageBox.Show("Estoy aqui");
                 while (reader.Read())
                 {
                     serie.Text = reader.GetString(0);
@@ -139,25 +137,23 @@ namespace Almacenes_Paul_Inventario
             return retorno;
         }
         //modificar producto
-        public static int ModificarProducto( string proNombre,string proSerie, string proModelo, string proMarca, string proPrecio, string proDescripcion,String proStock)
+        public static int ModificarProducto( string proNombre,string proSerie, string proModelo, string proMarca, string proPrecio, string proDescripcion,String proStock,Producto prod)
         {
-            Producto pProducto = new Producto();
-
+            Producto pProducto1 = new Producto();
+            pProducto1 = prod;
             int aux = 0;
             //a se refiere a la variable que realizara el casting para el precio
-            float a = 0; 
+            float a = 0;
             int stk = 0;
             a = float.Parse(proPrecio);
             stk = int.Parse(proStock);
             String proCodigo = Codigo(proNombre, proSerie);
             try
             {
-                if (proNombre!=pProducto.proNombre||proPrecio != pProducto.ProPrecio  || proSerie != pProducto.proSerie || proModelo != pProducto.proModelo || proMarca != pProducto.ProMarca || proDescripcion != pProducto.ProDescripcion)
+                if (proNombre != pProducto1.proNombre || proPrecio != pProducto1.ProPrecio || proSerie != pProducto1.proSerie || proModelo != pProducto1.proModelo || proMarca != pProducto1.ProMarca || proDescripcion != pProducto1.ProDescripcion)
                 {
                     comando.Connection = Clases.Conexion.getConnection();
-                    //MySqlCommand _comando = new MySqlCommand(string.Format("Update producto set pro_serie='" + proSerie + "', pro_modelo='" + proModelo + "', pro_marca='" + proMarca + "', pro_precio='" + a + "', pro_descripcion='" + proDescripcion + "' where pro_codigo_cliente='" + proCodigo + "'"), comando.Connection);
-
-                    MySqlCommand _comando = new MySqlCommand(string.Format("UPDATE pepro_produc SET PEPRO_NOMBRE='"+proNombre+"',PEPRO_SERIE='"+proSerie+"',PEPRO_MODELO='"+proModelo+"',PEPRO_MARCA='"+proMarca+"',PEPRO_PRECIO='"+a+"',PEPRO_DESCRIPCION='"+proDescripcion+"',PEPRO_STOCK='"+stk+"' WHERE PEPRO_CODIGO='"+proCodigo+"';"), comando.Connection);
+                    MySqlCommand _comando = new MySqlCommand(string.Format("UPDATE pepro_produc SET PEPRO_NOMBRE='" + proNombre + "',PEPRO_SERIE='" + proSerie + "',PEPRO_MODELO='" + proModelo + "',PEPRO_MARCA='" + proMarca + "',PEPRO_PRECIO='" + a + "',PEPRO_DESCRIPCION='" + proDescripcion + "',PEPRO_STOCK='" + stk + "' WHERE PEPRO_CODIGO='" + proCodigo + "';"), comando.Connection);
                     aux = _comando.ExecuteNonQuery();
                     comando.Connection.Close();
                     aux = 1;
@@ -215,7 +211,7 @@ namespace Almacenes_Paul_Inventario
                 proCodigo = value;
             }
         }
-        public string ProCodigoCliente
+        public string ProNombre
         {
             get
             {

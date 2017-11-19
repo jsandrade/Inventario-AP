@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recorderProject version="18.5">
+  <applicationConfiguration>
+    <moduleNamePattern>*\devenv.exe</moduleNamePattern>
+    <baseStateInfo>
+      <executable>%ProgramFiles%\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\devenv.exe</executable>
+      <workingDirectory>%ProgramFiles%\Microsoft Visual Studio\2017\Enterprise\Common7\IDE</workingDirectory>
+      <locator>Almacenes_Paul_Inventario - Microsoft Visual Studio</locator>
+    </baseStateInfo>
+  </applicationConfiguration>
+  <agentOptions/>
+</recorderProject>
